@@ -3,7 +3,7 @@ import '../styles/Cours_form.css';
 import React from 'react';
 import axiosInstance from '../Util/axiosInstance';
 
-const Cours_form =({afficher, setAfficher}) =>  
+const CoursForm =({afficher, setAfficher}) =>  
 {
 
     const[classe , setClasse]= useState("");
@@ -97,4 +97,4 @@ const Cours_form =({afficher, setAfficher}) =>
     ):"";
 }
 
- export default Cours_form;   
+ export default CoursForm;   

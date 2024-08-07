@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import NavControl from "../components/NavigationControl"
 import TableauCours from "../components/coursTableau"
 import { FaPlusCircle } from "react-icons/fa"
-import Cours_form from "../components/Cours_form"
+import CoursForm from "../components/CoursForm"
 
 
 
@@ -19,7 +19,7 @@ const CoursTabPage = ()=>{
             </button>
         </div>
         <TableauCours />
-        <Cours_form afficher={ajouter} setAfficher={setAjouter}/>
+        <CoursForm afficher={ajouter} setAfficher={setAjouter}/>
     </div>
 }
 
