@@ -1,23 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
+import ClasseTabPage from './pages/pageClasse';
+import CoursTabPage from './pages/pageCours';
+import { createBrowserRouter, NavLink, RouterProvider } from 'react-router-dom';
+import SalleTabPage from './pages/pageSalle';
+import MatiereTabpage from './pages/pageMatiere';
+import EnseignantTabPage from './pages/pageEnseignant';
+import AdminPage from './pages/pageAdmin';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <div>Login Page
+      <NavLink to={'/admin/cours'}>Entrer</NavLink>
+    </div>
+  },
+  {
+    path: '/admin',
+    element: <AdminPage/>,
+    children:[
+      {
+        path:'cours',
+        element: <CoursTabPage/>
+      },
+      {
+        path:'matiere',
+        element: <MatiereTabpage/>
+      },
+      {
+        path:'salle',
+        element: <SalleTabPage/>
+      },
+      {
+        path:'classe',
+        element: <ClasseTabPage/>
+      },
+      {
+        path:'enseignant',
+        element: <EnseignantTabPage/>
+      }
+    ]
+  }
+])
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }

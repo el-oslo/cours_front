@@ -1,0 +1,57 @@
+.container-tab{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bas-tab{
+    display: flex;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    height: 120px;
+    width: 900px;
+
+}
+
+.matiere{
+    background-color: #50B498; 
+    border-radius: 20px;
+}
+
+.item{
+    flex: 1;
+    padding: 20px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #468585;
+    margin: 10px;
+}
+.jour{
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 25px 0 0 25px;
+    background-color: #50B498;
+    width: 45px ;
+    height: 45px;
+}
+.heure{
+    margin-left: 20px;
+    padding: 20px;
+    width: 100px ;
+    border-radius: 10px 10px 0 0 ;
+    background-color: #50B498;
+}
+
+.haut-tab{
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+
+.vide{
+    width: 70px;
+}
