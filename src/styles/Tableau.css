@@ -59,6 +59,7 @@ thead::after{
     font-weight: 700;
     text-align: center;
     border: solid var(--vert) 1px;
+    border-radius: 10px;
     height: 30px;
     padding: 0px 10px;
     margin-right: 10px;
@@ -79,11 +80,16 @@ thead::after{
 }
 
 .edit-btn:hover{
-    color: var(--bleu-dark);
-    background-color: var(--vert);
-
+    /* color: var(--bleu-dark); */
+    background-color: var(--bleu-light);
+    border: solid var(--bleu-light) 1px;
 }
 
 .delete-btn{
     color: var(--orange);
+    cursor: pointer;
+}
+
+.action-cell{
+    width: 150px;
 }

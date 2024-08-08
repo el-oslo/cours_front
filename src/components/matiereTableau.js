@@ -3,30 +3,25 @@ import axiosInstance from "../Util/axiosInstance"
 import '../styles/Tableau.css'
 import { FaRegPenToSquare, FaTrash } from "react-icons/fa6"
 
-const TableauMatiere = ()=>{
-    const [data, setData] = useState([]);
-
-    const refreshData =async ()=>{
-        try{
-            const res = await axiosInstance.get('/matiere');
-            setData(res.data)
-            console.log(data)
-        }
-        catch(error){
-            console.error("Erreur lors du fetch de data: ", error)
-        }
-    }
+const TableauMatiere = ({setUpdate, refresh, data})=>{
 
     useEffect(()=>{
-        refreshData()
+        refresh()
     }, [])
 
     const handleEdit = (elem)=>{
-        console.log('Edit')
+        setUpdate(elem)
     }
 
-    const handleDelete = (id) => {
-        console.log('Delete')
+    const handleDelete =async (id) => {
+        try{
+            const res = await axiosInstance.delete('/matiere/'+id)
+            console.log("matiere deleted id: ", id)
+            refresh()
+        }
+        catch(error){
+            console.error("Delete failed", error)
+        }
     }
 
     return <>
@@ -42,7 +37,7 @@ const TableauMatiere = ()=>{
                 <tbody className="table-content">
                     {
                         data.map((elem, index)=>(
-                            <tr key={index} className="table-row">
+                            <tr key={index} className="table-row non-selectable">
                                 <th>{elem.codematiere}</th>
                                 <td>{elem.nommatiere}</td>
                                 <td className="action-cell">
@@ -52,7 +47,7 @@ const TableauMatiere = ()=>{
                                             Modifier
                                         </span>
                                     </button>
-                                    <FaTrash className="delete-btn" onClick={()=>{handleDelete(elem.numclasse)}}/>
+                                    <FaTrash className="delete-btn" onClick={()=>{handleDelete(elem.codematiere)}}/>
                                 </td>
                             </tr>
                         ))

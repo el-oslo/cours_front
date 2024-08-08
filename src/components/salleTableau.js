@@ -3,30 +3,24 @@ import axiosInstance from "../Util/axiosInstance"
 import '../styles/Tableau.css'
 import { FaRegPenToSquare, FaTrash } from "react-icons/fa6"
 
-const TableauSalle = ()=>{
-    const [data, setData] = useState([]);
-
-    const refreshData =async ()=>{
-        try{
-            const res = await axiosInstance.get('/salle');
-            setData(res.data)
-            console.log(data)
-        }
-        catch(error){
-            console.error("Erreur lors du fetch de data: ", error)
-        }
-    }
+const TableauSalle = ({setUpdate, refresh, data})=>{
 
     useEffect(()=>{
-        refreshData()
+        refresh()
     }, [])
 
     const handleEdit = (elem)=>{
-        console.log('Edit')
+        setUpdate(elem)
     }
 
-    const handleDelete = (id) => {
-        console.log('Delete')
+    const handleDelete =async (id) => {
+        try{
+            const res = await axiosInstance.delete('/salle/'+id)
+            console.log("salle deleted id:", id)
+            refresh()
+        } catch(error){
+            console.error("delete salle failed", error)
+        }
     }
 
     return <>
@@ -42,7 +36,7 @@ const TableauSalle = ()=>{
                 <tbody className="table-content">
                     {
                         data.map((elem, index)=>(
-                            <tr key={index} className="table-row">
+                            <tr key={index} className="table-row non-selectable">
                                 <th>{elem.numsalle}</th>
                                 <td>{elem.designsalle}</td>
                                 <td className="action-cell">
@@ -52,7 +46,7 @@ const TableauSalle = ()=>{
                                             Modifier
                                         </span>
                                     </button>
-                                    <FaTrash className="delete-btn" onClick={()=>{handleDelete(elem.numclasse)}}/>
+                                    <FaTrash className="delete-btn" onClick={()=>{handleDelete(elem.numsalle)}}/>
                                 </td>
                             </tr>
                         ))

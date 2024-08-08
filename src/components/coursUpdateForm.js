@@ -3,7 +3,7 @@ import '../styles/Cours_form.css';
 import React from 'react';
 import axiosInstance from '../Util/axiosInstance';
 
-const CoursForm =({afficher, setAfficher, refresh}) =>  
+const CoursUpdateForm =({afficher, setAfficher, elem, refresh}) =>  
 {
     const[classe , setClasse]= useState("");
     const[matiere , setMatiere]= useState("");
@@ -17,6 +17,16 @@ const CoursForm =({afficher, setAfficher, refresh}) =>
         setAfficher(afficher)
     }, [afficher, setAfficher])
 
+    useEffect(()=>{
+        setClasse(elem.numclasse)
+        setMatiere(elem.codematiere)
+        setDate(elem.date)
+        setHeureDebut(elem.heuredebut)
+        setHeureFin(elem.heurefin)
+        setEnseignant(elem.numenseignant)
+        setSalle(elem.numsalle)
+    },[elem])
+
     const handleSubmit =async () =>{
         const data = {
             codematiere: matiere,
@@ -28,7 +38,7 @@ const CoursForm =({afficher, setAfficher, refresh}) =>
             heurefin: heure_fin
         }
         try{
-            const res = await axiosInstance.post('/cours', data)
+            const res = await axiosInstance.put('/cours/'+elem.numcours, data)
             console.log(res.data)
             refresh()
             setAfficher(false)
@@ -36,8 +46,10 @@ const CoursForm =({afficher, setAfficher, refresh}) =>
         catch(error){
             console.error("Erreur lors de l'ajout de data d ans cours", error)
         }
+    }
 
-
+    const handleAbort = ()=>{
+        setAfficher(false)
     }
 
     return(afficher)?(
@@ -84,13 +96,13 @@ const CoursForm =({afficher, setAfficher, refresh}) =>
                 </div> 
                 <div className="btn">
                     <div>
-                            <p>Enregistrer un cours pour une date</p>
+                            <p>Modifier un cours pour une date</p>
                         </div>
                     <div>
                             <button type="submit" className='bleu-btn' onClick={handleSubmit}>Enregistrer</button>
                     </div> 
                     <div>
-                        <button className='annule-btn'onClick={() => setAfficher(false)}>Annuler</button>
+                        <button className='annule-btn'onClick={() => handleAbort()}>Annuler</button>
                         </div> 
                 </div>                    
             </div>
@@ -98,4 +110,4 @@ const CoursForm =({afficher, setAfficher, refresh}) =>
     ):"";
 }
 
- export default CoursForm;   
+ export default CoursUpdateForm

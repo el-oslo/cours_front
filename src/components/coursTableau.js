@@ -3,30 +3,24 @@ import axiosInstance from "../Util/axiosInstance"
 import '../styles/Tableau.css'
 import { FaRegPenToSquare, FaTrash } from "react-icons/fa6"
 
-const TableauCours = ()=>{
-    const [data, setData] = useState([]);
-
-    const refreshData =async ()=>{
-        try{
-            const res = await axiosInstance.get('/cours');
-            setData(res.data)
-            console.log(data)
-        }
-        catch(error){
-            console.error("Erreur lors du fetch de data: ", error)
-        }
-    }
-
+const TableauCours = ({setUpdate, refresh, data})=>{
     useEffect(()=>{
-        refreshData()
+        refresh()
     }, [])
 
     const handleEdit = (elem)=>{
-        console.log('Edit')
+        setUpdate(elem)
     }
 
-    const handleDelete = (id) => {
-        console.log('Delete')
+    const handleDelete =async (id) => {
+        try{
+            const res = await axiosInstance.delete('/cours/'+id)
+            console.log('cours deleted | id: ', id)
+            refresh()
+        }
+        catch(error){
+            console.error("Delete failed", error)
+        }
     }
 
     return <>
@@ -48,7 +42,7 @@ const TableauCours = ()=>{
                 <tbody className="table-content">
                     {
                         data.map((elem, index)=>(
-                            <tr key={index} className="table-row">
+                            <tr key={index} className="table-row non-selectable">
                                 <th>{elem.numcours}</th>
                                 <td>{elem.date}</td>
                                 <td>{elem.heuredebut}</td>

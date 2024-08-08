@@ -7,10 +7,76 @@
   font-family: 'Segoe UI';
 }
 
+:root{
+  --blanc: #e6e6e6;
+  --vert: #bfdb38;
+  --bleu-dark: #00425a;
+  --bleu-light: #1f8a70;
+  --orange: #fc7300;
+}
+
 .admin-content{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 5px;
+}
+
+.add-btn{
+  width:  130px;
+  height: 40px;
+  color: var(--bleu-dark);
+  font-weight: 700;
+  font-size: 12pt;
+  line-height: 50px;
+  background-color: var(--vert);
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.add-btn:hover{
+  content: "Ajouter";
+  background-color: var(--bleu-light);
+  /* color: var(--vert); */
+}
+
+.non-selectable {
+  user-select: none; /* Pour tous les navigateurs modernes */
+  -webkit-user-select: none; /* Pour Safari et Chrome */
+  -moz-user-select: none; /* Pour Firefox */
+  -ms-user-select: none; /* Pour Internet Explorer/Edge */
+}
+
+.page-control{
+  display: flex;
+  align-items: center;
+}
+
+.refresh-btn{
+  width: 30px;
+  height: 30px;
+  color: var(--vert);
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.refresh-btn:hover{
+  transform: rotate(180deg);
+}
+
+.error-page{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

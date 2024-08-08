@@ -3,30 +3,25 @@ import axiosInstance from "../Util/axiosInstance"
 import '../styles/Tableau.css'
 import { FaRegPenToSquare, FaTrash } from "react-icons/fa6"
 
-const TableauEnseignant = ()=>{
-    const [data, setData] = useState([]);
-
-    const refreshData =async ()=>{
-        try{
-            const res = await axiosInstance.get('/enseignant');
-            setData(res.data)
-            console.log(data)
-        }
-        catch(error){
-            console.error("Erreur lors du fetch de data: ", error)
-        }
-    }
+const TableauEnseignant = ({setUpdate, refresh, data})=>{
 
     useEffect(()=>{
-        refreshData()
+        refresh()
     }, [])
 
     const handleEdit = (elem)=>{
-        console.log('Edit')
+        setUpdate(elem)
     }
 
-    const handleDelete = (id) => {
-        console.log('Delete')
+    const handleDelete =async (id) => {
+        try{
+            const res = await axiosInstance.delete('/enseignant/'+id)
+            console.log('enseignant deleted id: ', id)
+            refresh()
+        }
+        catch(error){
+            console.error("delete failed", error)
+        }
     }
 
     return <>
@@ -44,7 +39,7 @@ const TableauEnseignant = ()=>{
                 <tbody className="table-content">
                     {
                         data.map((elem, index)=>(
-                            <tr key={index} className="table-row">
+                            <tr key={index} className="table-row non-selectable">
                                 <th>{elem.numenseignant}</th>
                                 <td>{elem.nomenseignant}</td>
                                 <td>{elem.prenomenseignant}</td>

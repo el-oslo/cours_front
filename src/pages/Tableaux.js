@@ -14,8 +14,6 @@ const Tableaux = ()=>{
                     <div className="heure">16h30-18h</div>
                 </div>
              </div>
-     
-        
              <div className="bas-tab"> 
 
                 <div className="date">
