@@ -1,0 +1,113 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    background-color: #50B498;
+    height: 720px;
+    border-radius: 20px 0 0 20px;
+    flex-direction: column;
+  
+  }
+ .container h2{
+    margin-left:  90px;
+    font-size: 50px;
+  }
+  
+  .item{
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+    background-color: transparent;
+  }
+
+  label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  #submit
+  {
+    background-color: #aaf465;
+    width: 80px;
+    height: 35px;
+    border-radius: 10px;
+    margin: 10px;
+     
+    border: none;
+  }
+
+  #button{
+    background-color: transparent;
+    width: 80px;
+    height: 35px;
+    border-radius: 10px;
+    margin: 10px;
+    color: orangered;
+    font-weight: bold;
+    border-color: orangered;
+
+  }
+  input{
+    height: 40px;
+    width: 300px;
+    background-color:var(--blanc) ;
+    border: none;
+    border-radius: 10px;
+    padding: 0 10px;
+
+  }
+
+  .text{
+    margin-right: 70px;
+  }
+
+
+
+  .page-acceuil {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color: #468585;
+  }
+  
+  .navbar{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    max-height: 50px;
+  }
+  
+  .navbar h1{
+    color: orangered;
+    margin-left: 50px;
+  }
+  
+  .navbar a{
+    color:white;
+    padding: 6px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .navbar button{
+    background-color: transparent;
+    border: none;
+    height: 100px;
+  }
+  
+  .links{
+    margin-left: 1000px;
+  }
+  
+  .log{
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .container-affichage{
+    flex-grow: 1;
+    height: 720px;
+  }
